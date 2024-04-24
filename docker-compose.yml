@@ -1,0 +1,23 @@
+version: '4.28'
+
+services:
+
+  backend:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: qwerty123
+      POSTGRES_DB: postgres
+
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: qwerty123
+    ports:
+      - "5432:5432"
