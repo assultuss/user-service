@@ -2,6 +2,7 @@ package db
 
 import (
 	"fmt"
+	"github.com/google/uuid"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"os"
@@ -35,6 +36,10 @@ func AutoMigrate() error {
 }
 
 func CreateUser(user *User) error {
+
+	id := uuid.New().String()
+	user.ID = id
+
 	err := db.Create(user).Error
 	if err != nil {
 		return err
